@@ -1,10 +1,13 @@
 const WebSocket = require('ws');
 
-const wss = new WebSocket.Server({ port: 8080 });
-
+const wss = new WebSocket.Server({ port: 8080, host: '192.168.153.252'});
 
 const appClients = new Set();
 const baliseClients = new Set();
+
+wss.on('listening', () => {
+    console.log(`WebSocket server is listening on: ws://${wss.options.host}:${wss.options.port}`);
+});
 
 wss.on('connection', (ws) => {
     console.log('New client connected');
