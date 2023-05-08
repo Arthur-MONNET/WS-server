@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 
-const wss = new WebSocket.Server({ port: 8080, host: '192.168.153.252'});
+const wss = new WebSocket.Server({ port: 8080, host: '192.168.1.15'});
 
 const appClients = new Set();
 const baliseClients = new Set();
