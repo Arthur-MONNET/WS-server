@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Arthur-MONNET/WS-server#readme",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "nodemon": "^2.0.22",
     "ws": "^8.13.0"
   }
