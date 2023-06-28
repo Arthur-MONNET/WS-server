@@ -4,19 +4,15 @@ Vulpo Server is a backend server application that provides API endpoints and fun
 
 ## Features
 
-- Authentication and user management
-- CRUD operations for various resources (e.g., articles, comments, users)
+- Managing beacons and users
+- Store and retrieve data from a json file
 - Real-time notifications using websockets
-- Integration with external services (e.g., email service)
 
 ## Technologies Used
 
 - Node.js
-- Express.js
-- MongoDB
 - WebSocket
-- Passport.js
-- Nodemailer
+- fs
 
 ## Installation
 
