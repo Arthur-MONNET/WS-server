@@ -26,8 +26,22 @@ function isNewAlert(newAlert, previousAlerts) {
     }
 
 
-    const bestReportings = newAlert.reportings.filter(reporting => reporting.score > 0.9 && reporting.index != 0 && reporting.index != 5);
+    const bestReportings = newAlert.reportings.filter(reporting => 
+        {
+            // réaction différente en fonction de la catégorie
+            if(reporting.index === 1 && reporting.score > 0.98) return true; // cerf
+            else if(reporting.index === 2 && reporting.score > 0.8) return true; // coup de feu
+            else if(reporting.index === 3 && reporting.score > 0.95) return true; // loup
+            else if(reporting.index === 4 && reporting.score > 0.8) return true; // moto cross
+            else if(reporting.index === 6 && reporting.score > 0.8) return true; // renard
+            return false;
+        });
     if (bestReportings.length === 0) return false;
+    if(bestReportings[0].index === 1) console.log('cerf : ' + Math.round(bestReportings[0].score * 100) + '%')
+    else if(bestReportings[0].index === 2) console.log('coup de feu : ' + Math.round(bestReportings[0].score * 100) + '%')
+    else if(bestReportings[0].index === 3) console.log('loup : ' + Math.round(bestReportings[0].score * 100) + '%')
+    // else if(bestReportings[0].index === 4) console.log('moto cross : ' + Math.round(bestReportings[0].score * 100) + '%')
+    else if(bestReportings[0].index === 6) console.log('renard : ' + Math.round(bestReportings[0].score * 100) + '%')
     const bestReporting = bestReportings.sort((a, b) => b.score - a.score)[0];
     newAlert.reporting = bestReporting.index;
     // console.log('bestReporting : ', bestReporting.score, bestReporting.category_name)
@@ -69,7 +83,6 @@ wss.on('connection', (ws) => {
             if (payload) {
                 sendToMultiple(appClients, type, payload)
             }
-
         } else if (target === 'beacon') {
             if (payload) {
                 sendToMultiple(beaconClients, type, payload)
